@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&display=swap');
+
+/* Zmienne globalne */
+:root {
+    --bg-main: #f0f4f8;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --accent-blue: #007bff;
+    --accent-light: #e0f2ff;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --max-width: 95%;
+    --gutter: 1.5rem;
+}
+
+* { box-sizing: border-box;}
+
+/* Podstawowe style i układ strony */
+html,body { height: 100%;}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+    line-height: 1.6;
+    background-color: var(--bg-main);
+    background-image: url("site1bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Główny kontener treści (układ boczny) */
+#site {
+    max-width: var(--max-width);
+    margin: 4rem auto 2rem auto;
+    padding: var(--gutter);
+    flex-grow: 1;
+
+    /* Efekt Glassmorphism */
+    background: var(--glass-bg);
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px var(--shadow-medium);
+
+    /* Układ Flexbox */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Nagłówek */
+header {
+    background: var(--glass-bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    margin: 1.2rem var(--gutter);
+    box-shadow: 0 4px 16px var(--shadow-light);
+    width: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-family: 'BBH Sans Hegarty', 'Raleway', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+/* Kontener zdjęć (Panel boczny) */
+#photos {
+    order: 1;
+    flex: 1 1 25%;
+    min-width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--gutter);
+    padding: 0;
+    align-items: stretch;
+    margin-top: 0;
+}
+
+#photos img {
+    display: block;
+    border-radius: 15px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    box-shadow: 0 6px 20px var(--shadow-light);
+    transition: transform 0.3s ease;
+}
+
+#photos img:hover {
+    transform: scale(1.03);
+}
+
+/* Kontener tekstu */
+#words {
+    order: 2;
+    flex: 3 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter);
+    margin-top: 0;
+}
+
+/* Stylizacja poszczególnych bloków tekstu */
+.paraph {
+    flex: 1 1 300px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.paraph:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.paraph h2 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    color: var(--accent-blue);
+    font-family: 'BBH Sans Hegarty', 'Raleway', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.paraph h3 {
+    margin-top: 0.6rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.paraph p {
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-left: 1rem;
+}
+
+/* ========================================================================= */
+/* STYLIZACJA LISTY RANKINGOWEJ */
+/* ========================================================================= */
+
+.paraph .styled-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+    counter-reset: ranking-counter;
+    position: relative;
+    display: block;
+}
+
+.paraph .styled-list li {
+    /* Padding lewy dla miejsca na numer */
+    padding: 1rem 1.5rem 1rem 4.5rem;
+    margin-bottom: 10px;
+
+    background-color: var(--card-bg);
+    /* Białe tło wiersza */
+    color: var(--text-primary);
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.paraph .styled-list li:hover {
+    background-color: var(--accent-light);
+}
+
+/* Numeracja za pomocą pseudoelementu (::before) */
+.paraph .styled-list li::before {
+    counter-increment: ranking-counter;
+    content: counter(ranking-counter);
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    /* Kolorystyka */
+    color: white;
+}
+
+/* Stopka */
+footer {
+    order: 3;
+    width: 100%;
+    margin-top: 2rem;
+    background: var(--glass-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    color: var(--text-secondary);
+    box-shadow: 0 -4px 16px var(--shadow-light);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Tweak'sy responsywne dla małych ekranów */
+@media (max-width:600px) {
+    #site { width: 98% }
+
+    header h1 { font-size: 1.25rem }
+
+    .paraph h3 { font-size: 0.9rem }
+
+    #photos img { height: 90px; }
+}
