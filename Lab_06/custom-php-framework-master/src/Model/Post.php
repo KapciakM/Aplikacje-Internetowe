@@ -6,9 +6,8 @@ use App\Service\Config;
 class Post
 {
     private ?int $id = null;
-    private ?string $name = null;
-    private ?string $genre = null;
-    private ?string $description = null;
+    private ?string $subject = null;
+    private ?string $content = null;
 
     public function getId(): ?int
     {
@@ -22,38 +21,27 @@ class Post
         return $this;
     }
 
-    public function getName(): ?string
+    public function getSubject(): ?string
     {
-        return $this->name;
+        return $this->subject;
     }
 
-    public function setName(?string $name): Post
+    public function setSubject(?string $subject): Post
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(?string $genre): Post
-    {
-        $this->genre = $genre;
+        $this->subject = $subject;
 
         return $this;
     }
-    
-    public function getDescription(): ?string
+
+    public function getContent(): ?string
     {
-        return $this->description;
+        return $this->content;
     }
-    
-    public function setDescription(?string $description): Post
+
+    public function setContent(?string $content): Post
     {
-        $this->description = $description;
+        $this->content = $content;
+
         return $this;
     }
 
@@ -70,14 +58,11 @@ class Post
         if (isset($array['id']) && ! $this->getId()) {
             $this->setId($array['id']);
         }
-        if (isset($array['name'])) {
-            $this->setName($array['name']);
+        if (isset($array['subject'])) {
+            $this->setSubject($array['subject']);
         }
-        if (isset($array['genre'])) {
-            $this->setGenre($array['genre']);
-        }
-        if (isset($array['description'])) {
-            $this->setDescription($array['description']);
+        if (isset($array['content'])) {
+            $this->setContent($array['content']);
         }
 
         return $this;
@@ -119,22 +104,20 @@ class Post
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
         if (! $this->getId()) {
-            $sql = "INSERT INTO post (name, genre, description) VALUES (:name, :genre, :description)";
+            $sql = "INSERT INTO post (subject, content) VALUES (:subject, :content)";
             $statement = $pdo->prepare($sql);
             $statement->execute([
-                'name' => $this->getName(),
-                'genre' => $this->getGenre(),
-                'description' => $this->getDescription(),
+                'subject' => $this->getSubject(),
+                'content' => $this->getContent(),
             ]);
 
             $this->setId($pdo->lastInsertId());
         } else {
-            $sql = "UPDATE post SET name = :name, genre = :genre, description = :description WHERE id = :id";
+            $sql = "UPDATE post SET subject = :subject, content = :content WHERE id = :id";
             $statement = $pdo->prepare($sql);
             $statement->execute([
-                ':name' => $this->getName(),
-                ':genre' => $this->getGenre(),
-                ':description' => $this->getDescription(),
+                ':subject' => $this->getSubject(),
+                ':content' => $this->getContent(),
                 ':id' => $this->getId(),
             ]);
         }
@@ -150,8 +133,7 @@ class Post
         ]);
 
         $this->setId(null);
-        $this->setName(null);
-        $this->setGenre(null);
-        $this->setDescription(null);
+        $this->setSubject(null);
+        $this->setContent(null);
     }
 }

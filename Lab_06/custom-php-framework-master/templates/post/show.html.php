@@ -3,19 +3,13 @@
 /** @var \App\Model\Post $post */
 /** @var \App\Service\Router $router */
 
-$title = "{$post->getName()} ({$post->getId()})";
+$title = "{$post->getSubject()} ({$post->getId()})";
 $bodyClass = 'show';
 
 ob_start(); ?>
-    <h1><?= $post->getName() ?></h1>
-    <label><b>Genre: </b></label>
+    <h1><?= $post->getSubject() ?></h1>
     <article>
-        <?= $post->getGenre();?>
-    </article>
-    <br>
-    <label><b>Description:</b></label><br>
-    <article>
-        <?= $post->getDescription();?>
+        <?= $post->getContent();?>
     </article>
 
     <ul class="action-list">

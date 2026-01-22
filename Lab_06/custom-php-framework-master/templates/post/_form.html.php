@@ -1,20 +1,15 @@
 <?php
-    /** @var $post ?\App\Model\Post */
+/** @var $post ?\App\Model\Post */
 ?>
 
 <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="post[name]" value="<?= $post ? $post->getName() : '' ?>">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="post[subject]" value="<?= $post ? $post->getSubject() : '' ?>">
 </div>
 
 <div class="form-group">
-    <label for="genre">Genre</label>
-    <textarea id="genre" name="post[genre]"><?= $post? $post->getGenre() : '' ?></textarea>
-</div>
-
-<div class="form-group">
-    <label for="description">Genre</label>
-    <textarea id="description" name="post[description]"><?= $post? $post->getDescription() : '' ?></textarea>
+    <label for="content">Content</label>
+    <textarea id="content" name="post[content]"><?= $post? $post->getContent() : '' ?></textarea>
 </div>
 
 <div class="form-group">

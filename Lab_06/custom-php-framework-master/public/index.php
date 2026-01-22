@@ -38,6 +38,35 @@ switch ($action) {
         $controller = new \App\Controller\PostController();
         $view = $controller->deleteAction($_REQUEST['id'], $router);
         break;
+    case 'anime-list-index':
+        $controller = new \App\Controller\AnimeListController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    case 'anime-list-create':
+        $controller = new \App\Controller\AnimeListController();
+        $view = $controller->createAction($_REQUEST['anime_list'] ?? null, $templating, $router);
+        break;
+    case 'anime-list-edit':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\AnimeListController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['anime_list'] ?? null, $templating, $router);
+        break;
+    case 'anime-list-show':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\AnimeListController();
+        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+        break;
+    case 'anime-list-delete':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\AnimeListController();
+        $view = $controller->deleteAction($_REQUEST['id'], $router);
+        break;
     case 'info':
         $controller = new \App\Controller\InfoController();
         $view = $controller->infoAction();
